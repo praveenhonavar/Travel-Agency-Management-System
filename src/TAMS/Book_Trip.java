@@ -26,6 +26,7 @@ public class Book_Trip extends javax.swing.JFrame {
         initComponents();
         conn = Mysqlconnect.ConnectDB();
         fetch();
+        combo();
     }
     
      public void fetch(){
@@ -41,6 +42,24 @@ public class Book_Trip extends javax.swing.JFrame {
             
     }
     }
+     
+    public void combo(){
+        try{
+            String csql = "select * from places";
+             pst=conn.prepareStatement(csql);
+             rs=pst.executeQuery();
+             
+             while(rs.next()){
+                 String place = rs.getString("city");
+                 Src.addItem(place);
+             }
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    } 
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,7 +84,6 @@ public class Book_Trip extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         Tid = new javax.swing.JTextField();
-        Src = new javax.swing.JTextField();
         Des = new javax.swing.JTextField();
         Cname = new javax.swing.JTextField();
         Cadd = new javax.swing.JTextField();
@@ -78,6 +96,7 @@ public class Book_Trip extends javax.swing.JFrame {
         Btable = new javax.swing.JTable();
         Jdate = new com.toedter.calendar.JDateChooser();
         Edate = new com.toedter.calendar.JDateChooser();
+        Src = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,12 +181,6 @@ public class Book_Trip extends javax.swing.JFrame {
             }
         });
 
-        Src.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SrcActionPerformed(evt);
-            }
-        });
-
         Des.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DesActionPerformed(evt);
@@ -227,10 +240,16 @@ public class Book_Trip extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Trip ID", "Customer Name", "Source", "Destination", "JourneyDate"
+                "Trip ID", "Customer Name", "Source", "Destination", ""
             }
         ));
         BookScrollPane1.setViewportView(Btable);
+
+        Src.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SrcActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,8 +287,8 @@ public class Book_Trip extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                                 .addComponent(Delbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Src, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Src, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(212, 212, 212)
                                 .addComponent(Bookbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(80, 80, 80))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -288,55 +307,58 @@ public class Book_Trip extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(Cid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Src, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(2, 33, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(Src, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 35, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bookbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(Delbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Delbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel5))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Des, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35)
+                        .addComponent(Jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(Clrbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(Edate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Edate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(Cname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cadd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(Cadd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Cphone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(BookScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -358,10 +380,6 @@ public class Book_Trip extends javax.swing.JFrame {
     private void TidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TidActionPerformed
-
-    private void SrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SrcActionPerformed
 
     private void DesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesActionPerformed
         // TODO add your handling code here:
@@ -391,7 +409,7 @@ public class Book_Trip extends javax.swing.JFrame {
         // TODO add your handling code here:
             Tid.setText("  ");
             Cid.setText("  ");
-            Src.setText("  ");
+            //Src.setText("  ");
             Des.setText("  ");
             Jdate.setDate(null);
             
@@ -418,7 +436,7 @@ public class Book_Trip extends javax.swing.JFrame {
             ps2 =conn.prepareStatement(tsql);
 
             pst.setString(1,Tid.getText());
-            pst.setString(2,Src.getText());            
+            //pst.setString(2,Src.getText());            
             pst.setString(3,Des.getText());            
             pst.setDate(4, new java.sql.Date(Jdate.getDate().getTime()));            
             pst.setDate(5, new java.sql.Date(Edate.getDate().getTime()));
@@ -430,7 +448,7 @@ public class Book_Trip extends javax.swing.JFrame {
             
             ps2.setString(1,Tid.getText());
             ps2.setString(2,Cname.getText());            
-            ps2.setString(3,Src.getText());
+            //ps2.setString(3,Src.getText());
             ps2.setString(4,Des.getText());
             
             pst.execute();
@@ -469,6 +487,12 @@ public class Book_Trip extends javax.swing.JFrame {
         Hobj.setVisible(true);
 
     }//GEN-LAST:event_headerMouseClicked
+
+    private void SrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrcActionPerformed
+        // TODO add your handling code here:
+        combo();
+        
+    }//GEN-LAST:event_SrcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -518,7 +542,7 @@ public class Book_Trip extends javax.swing.JFrame {
     private javax.swing.JTextField Des;
     private com.toedter.calendar.JDateChooser Edate;
     private com.toedter.calendar.JDateChooser Jdate;
-    private javax.swing.JTextField Src;
+    private javax.swing.JComboBox<String> Src;
     private javax.swing.JTextField Tid;
     private javax.swing.JPanel header;
     private com.toedter.calendar.JDateChooser jDateChooser1;
