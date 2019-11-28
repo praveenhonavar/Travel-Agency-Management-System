@@ -24,12 +24,12 @@ public class Book_Trip extends javax.swing.JFrame {
      */
     public Book_Trip() {
         initComponents();
-        conn = Mysqlconnect.ConnectDB();
-        fetch();
-        combo();
+        //conn = Mysqlconnect.ConnectDB();
+        //fetch();
+        //combo();
     }
     
-     public void fetch(){
+     /*public void fetch(){
         try{
                     String sql="select * from tripdisplay";
                     pst=conn.prepareStatement(sql);
@@ -41,9 +41,9 @@ public class Book_Trip extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
             
     }
-    }
+    }*/
      
-    public void combo(){
+   /* public void combo(){
         try{
             String csql = "select * from places";
              pst=conn.prepareStatement(csql);
@@ -58,7 +58,7 @@ public class Book_Trip extends javax.swing.JFrame {
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
-    } 
+    } */
      
 
     /**
@@ -70,8 +70,7 @@ public class Book_Trip extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jPanel1 = new javax.swing.JPanel();
+        jpanel = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -94,13 +93,13 @@ public class Book_Trip extends javax.swing.JFrame {
         Bookbtn = new javax.swing.JButton();
         BookScrollPane1 = new javax.swing.JScrollPane();
         Btable = new javax.swing.JTable();
-        Jdate = new com.toedter.calendar.JDateChooser();
-        Edate = new com.toedter.calendar.JDateChooser();
-        Src = new javax.swing.JComboBox<>();
+        Jdate = new org.jdesktop.swingx.JXDatePicker();
+        Edate = new org.jdesktop.swingx.JXDatePicker();
+        Src = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jpanel.setBackground(new java.awt.Color(0, 0, 51));
 
         header.setBackground(new java.awt.Color(102, 0, 153));
         header.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -251,14 +250,14 @@ public class Book_Trip extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
+        jpanel.setLayout(jpanelLayout);
+        jpanelLayout.setHorizontalGroup(
+            jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jpanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(jLabel10)
@@ -269,96 +268,97 @@ public class Book_Trip extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel3))
                 .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelLayout.createSequentialGroup()
+                        .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpanelLayout.createSequentialGroup()
                                 .addComponent(Edate, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                                 .addComponent(Clrbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpanelLayout.createSequentialGroup()
+                                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Cname, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Cphone, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Cadd, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cid, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                                    .addComponent(Cid, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Delbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Src, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpanelLayout.createSequentialGroup()
+                                .addComponent(Src)
                                 .addGap(212, 212, 212)
                                 .addComponent(Bookbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(80, 80, 80))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Des, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpanelLayout.createSequentialGroup()
+                        .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Des, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                            .addComponent(Jdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BookScrollPane1)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpanelLayout.setVerticalGroup(
+            jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Cid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(Src, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 35, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(Src, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
                         .addComponent(Bookbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpanelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpanelLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(Delbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jpanelLayout.createSequentialGroup()
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel5))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(Jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jpanelLayout.createSequentialGroup()
                         .addComponent(Des, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(Jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)))
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(Clrbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jpanelLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Edate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(Edate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(Cname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(Cadd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Cphone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(BookScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -367,11 +367,11 @@ public class Book_Trip extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -422,51 +422,50 @@ public class Book_Trip extends javax.swing.JFrame {
     private void BookbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtnActionPerformed
           conn = Mysqlconnect.ConnectDB();
           PreparedStatement ps1 = null;    //FOR CUSTOMER
-          PreparedStatement ps2 = null;    //FOR TRIPDISPLAY
+         // PreparedStatement ps2 = null;    //FOR TRIPDISPLAY
         
           String query = "INSERT INTO TRIP (TID,SOURCE,DEST,SDATE,EDATE)VALUES(?,?,?,?,?)";
         
           String sql="INSERT INTO CUSTOMER (CID,CNAME,CADDRESS,CPHONE)VALUES(?,?,?,?)";
         
-          String tsql = "INSERT INTO TRIPDISPLAY (TID,CNAME,SOURCE,DESTINATION)VALUES(?,?,?,?)";
+         // String tsql = "INSERT INTO TRIPDISPLAY (TID,CNAME,SOURCE,DESTINATION)VALUES(?,?,?,?)";
         
         try{
             pst =conn.prepareStatement(query);
             ps1 =conn.prepareStatement(sql);
-            ps2 =conn.prepareStatement(tsql);
+            //ps2 =conn.prepareStatement(tsql);
 
             pst.setString(1,Tid.getText());
-            //pst.setString(2,Src.getText());            
+            String s= Tid.getText();
+            pst.setString(2,Src.getText());            
             pst.setString(3,Des.getText());            
             pst.setDate(4, new java.sql.Date(Jdate.getDate().getTime()));            
             pst.setDate(5, new java.sql.Date(Edate.getDate().getTime()));
             
             ps1.setString(1,Cid.getText());
+             String c= Cid.getText();
             ps1.setString(2,Cname.getText());            
             ps1.setString(3,Cadd.getText());
             ps1.setString(4,Cphone.getText());
             
-            ps2.setString(1,Tid.getText());
-            ps2.setString(2,Cname.getText());            
+           // ps2.setString(1,Tid.getText());
+           // ps2.setString(2,Cname.getText());            
             //ps2.setString(3,Src.getText());
-            ps2.setString(4,Des.getText());
+           // ps2.setString(4,Des.getText());
             
             pst.execute();
             ps1.execute();
-            ps2.execute();
+          //  ps2.execute();
             
             //JOptionPane.showMessageDialog(null,"TRIP DETAILS AND CUSTOMER DETAILS ARE ADDED");
             dispose();
             
             Confirm_book Cbobj = new Confirm_book();
+            Cbobj.Tid1.setText(s);
+            Cbobj.Cid1.setText(c);
             Cbobj.setVisible(true);
-            try{
-              
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null,e);  
-            }
-
+            
+            
 
 
             
@@ -490,8 +489,6 @@ public class Book_Trip extends javax.swing.JFrame {
 
     private void SrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SrcActionPerformed
         // TODO add your handling code here:
-        combo();
-        
     }//GEN-LAST:event_SrcActionPerformed
 
     /**
@@ -540,12 +537,11 @@ public class Book_Trip extends javax.swing.JFrame {
     private javax.swing.JTextField Cphone;
     private javax.swing.JButton Delbtn;
     private javax.swing.JTextField Des;
-    private com.toedter.calendar.JDateChooser Edate;
-    private com.toedter.calendar.JDateChooser Jdate;
-    private javax.swing.JComboBox<String> Src;
+    private org.jdesktop.swingx.JXDatePicker Edate;
+    private org.jdesktop.swingx.JXDatePicker Jdate;
+    private javax.swing.JTextField Src;
     private javax.swing.JTextField Tid;
     private javax.swing.JPanel header;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -556,6 +552,6 @@ public class Book_Trip extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jpanel;
     // End of variables declaration//GEN-END:variables
 }
