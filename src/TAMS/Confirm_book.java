@@ -6,18 +6,69 @@
 package TAMS;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+//import java.sql.Time;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author HP
  */
 public class Confirm_book extends javax.swing.JFrame {
-
+     Connection conn=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
+    
     /**
      * Creates new form Confirm_book
      */
     public Confirm_book() {
         initComponents();
+        retrieve();
+     }
+    public void retrieve()
+    {
+  
+        String sql="SELECT vid FROM vehicle";
+        String bb="select eid from employee";
+        PreparedStatement ps1=null;
+         ResultSet rs1=null;
+
+        try
+        {
+            
+
+            //STATEMENT
+            conn = Mysqlconnect.ConnectDB();
+            pst=conn.prepareStatement(sql);
+             ps1=conn.prepareStatement(bb);
+             rs=pst.executeQuery(sql);
+             rs1=ps1.executeQuery(bb);
+
+            //LOOP THRU GETTING ALL VALUES
+            while(rs.next())
+            {
+                //GET VALUES
+                String name=rs.getString("vid");
+
+                combovid.addItem(name);
+                
+            }
+            while(rs1.next())
+            {
+                //GET VALUES
+                String name1=rs1.getString("eid");
+
+                comboeid.addItem(name1);
+                
+            }
+            
+         }
+         catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+        }
     }
 
     /**
@@ -37,15 +88,20 @@ public class Confirm_book extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Bookbtn = new javax.swing.JButton();
-        Tid = new javax.swing.JTextField();
+        Cid1 = new javax.swing.JTextField();
         Tid1 = new javax.swing.JTextField();
         Tid2 = new javax.swing.JTextField();
         Tid3 = new javax.swing.JTextField();
         Tid4 = new javax.swing.JTextField();
-        calAmount = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         amount = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        combovid = new javax.swing.JComboBox<>();
+        comboeid = new javax.swing.JComboBox<>();
+        disp2 = new javax.swing.JLabel();
+        disp1 = new javax.swing.JLabel();
+        disp3 = new javax.swing.JLabel();
+        disp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +123,7 @@ public class Confirm_book extends javax.swing.JFrame {
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap(317, Short.MAX_VALUE)
+                .addContainerGap(467, Short.MAX_VALUE)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(320, 320, 320))
         );
@@ -107,9 +163,9 @@ public class Confirm_book extends javax.swing.JFrame {
             }
         });
 
-        Tid.addActionListener(new java.awt.event.ActionListener() {
+        Cid1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TidActionPerformed(evt);
+                Cid1ActionPerformed(evt);
             }
         });
 
@@ -137,19 +193,6 @@ public class Confirm_book extends javax.swing.JFrame {
             }
         });
 
-        calAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 153), 4));
-
-        javax.swing.GroupLayout calAmountLayout = new javax.swing.GroupLayout(calAmount);
-        calAmount.setLayout(calAmountLayout);
-        calAmountLayout.setHorizontalGroup(
-            calAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-        calAmountLayout.setVerticalGroup(
-            calAmountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
-        );
-
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,6 +208,48 @@ public class Confirm_book extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Amount");
+
+        combovid.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combovidItemStateChanged(evt);
+            }
+        });
+        combovid.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                combovidPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        combovid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combovidActionPerformed(evt);
+            }
+        });
+
+        comboeid.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comboeidPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
+        disp2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        disp2.setForeground(new java.awt.Color(255, 255, 255));
+
+        disp1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        disp1.setForeground(new java.awt.Color(255, 255, 255));
+
+        disp3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        disp3.setForeground(new java.awt.Color(255, 255, 255));
+
+        disp.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        disp.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -185,67 +270,89 @@ public class Confirm_book extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Tid1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3))
+                                    .addComponent(jLabel3)
                                     .addGap(85, 85, 85))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Tid3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Tid4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(29, 29, 29)
+                                .addComponent(Cid1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Tid4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Tid3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(combovid, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(comboeid, 0, 171, Short.MAX_VALUE))
+                                    .addGap(8, 8, 8))))
+                        .addComponent(jLabel1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(calAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addComponent(jLabel5)
                         .addGap(26, 26, 26)
                         .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(disp3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(disp2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(disp1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(disp, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(Tid1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Tid1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)))
-                        .addGap(30, 30, 30)
+                                .addComponent(jLabel2)
+                                .addGap(30, 30, 30)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Tid3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(39, 39, 39)
-                                .addComponent(Tid4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(Cid1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(calAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(disp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(disp1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(disp2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(disp3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Tid4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboeid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(Tid3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combovid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Tid2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(Bookbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -266,8 +373,44 @@ public class Confirm_book extends javax.swing.JFrame {
 
     private void BookbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtnActionPerformed
         // TODO add your handling code here:
+         conn = Mysqlconnect.ConnectDB();
+         PreparedStatement ps1= null;
+         PreparedStatement ps2= null;
+        String query = "INSERT INTO BOOKED_FOR (VID,CID,TID)VALUES(?,?,?)";
+         String sql = "INSERT INTO DRIVEN_BY (EID,VID,TID)VALUES(?,?,?)";
+         String ss = "INSERT INTO payment (TID,CID,DISTANCETRAVEL,AMOUNT)VALUES(?,?,?,?)";
         
-        JOptionPane.showMessageDialog(null,"Booking Confirmed");
+        try{
+            pst =conn.prepareStatement(query);
+            ps1 =conn.prepareStatement(sql);
+            ps2 =conn.prepareStatement(ss);
+            //pst.setString(1,Eid.getText());
+            pst.setString(1,Tid3.getText());
+            pst.setString(2,Cid1.getText());
+            pst.setString(3,Tid1.getText());
+             ps1.setString(1,Tid4.getText());
+            ps1.setString(2,Tid3.getText());
+            ps1.setString(3,Tid1.getText());
+            ps2.setString(1,Tid1.getText());
+            ps2.setString(2,Cid1.getText());
+            ps2.setString(3,Tid2.getText());
+            ps2.setString(4, amount.getText());
+            
+            
+            
+            pst.execute();
+            ps1.execute();
+            ps2.execute();
+            
+        
+            JOptionPane.showMessageDialog(null,"Booking Confirmed");
+            
+          }
+         catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+        }
+         
+        
         
         Book_Trip Btobj = new Book_Trip();
         Btobj.setVisible(true);
@@ -275,9 +418,9 @@ public class Confirm_book extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BookbtnActionPerformed
 
-    private void TidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TidActionPerformed
+    private void Cid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cid1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TidActionPerformed
+    }//GEN-LAST:event_Cid1ActionPerformed
 
     private void Tid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tid1ActionPerformed
         // TODO add your handling code here:
@@ -305,6 +448,72 @@ public class Confirm_book extends javax.swing.JFrame {
     private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountActionPerformed
+
+    private void combovidItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combovidItemStateChanged
+     //  String id=combovid.getSelectedItem().toString();
+      // Tid3.setText(id);// TODO add your handling code here:
+    }//GEN-LAST:event_combovidItemStateChanged
+
+    private void combovidPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_combovidPopupMenuWillBecomeInvisible
+          String tmp=(String)combovid.getSelectedItem();
+          String aa="select * from vehicle where vid=? ";
+          //pst =conn.prepareStatement(aa);
+          try{
+              pst =conn.prepareStatement(aa);
+            pst.setString(1, tmp);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                String add=rs.getString("vid");
+                Tid3.setText(add);
+                // String add1=("Name: "+rs.getString("vname")+"\n type "+rs.getString("type")+"\n Capacity"+rs.getString("capacity"));
+                String add1=("Name: "+rs.getString("vname"));
+               String add2=("Type"+rs.getString("type"));
+               String add3=("Capacity"+rs.getString("capacity"));
+               String msg=("Vehicle Details");
+               disp.setText(msg);
+               //String add4=rs.getString("ejdate");
+                disp1.setText(add1);
+                disp2.setText(add2);
+                disp3.setText(add3);
+                
+            }
+          }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+        }
+           // TODO add your handling code here:
+    }//GEN-LAST:event_combovidPopupMenuWillBecomeInvisible
+
+    private void combovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combovidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combovidActionPerformed
+
+    private void comboeidPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboeidPopupMenuWillBecomeInvisible
+       String tmp=(String)comboeid.getSelectedItem();
+          String aa="select * from employee where eid=? ";
+          //pst =conn.prepareStatement(aa);
+          try{
+              pst =conn.prepareStatement(aa);
+            pst.setString(1, tmp);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                String add=rs.getString("eid");
+                Tid4.setText(add);
+                String add1=("Name: "+rs.getString("ename"));
+               String add2=("Address"+rs.getString("eaddress"));
+               String add3=("Phone"+rs.getString("ephone"));
+                String msg=("Empl01oyee Details");
+               disp.setText(msg);
+               //String add4=rs.getString("ejdate");
+                disp1.setText(add1);
+                disp2.setText(add2);
+                disp3.setText(add3);
+            }
+          }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_comboeidPopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments
@@ -343,13 +552,18 @@ public class Confirm_book extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bookbtn;
-    private javax.swing.JTextField Tid;
-    private javax.swing.JTextField Tid1;
+    public static javax.swing.JTextField Cid1;
+    public static javax.swing.JTextField Tid1;
     private javax.swing.JTextField Tid2;
     private javax.swing.JTextField Tid3;
     private javax.swing.JTextField Tid4;
     private javax.swing.JTextField amount;
-    private javax.swing.JPanel calAmount;
+    private javax.swing.JComboBox<String> comboeid;
+    private javax.swing.JComboBox<String> combovid;
+    private javax.swing.JLabel disp;
+    private javax.swing.JLabel disp1;
+    private javax.swing.JLabel disp2;
+    private javax.swing.JLabel disp3;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

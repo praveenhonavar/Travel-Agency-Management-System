@@ -36,7 +36,7 @@ public class Vechicle extends javax.swing.JFrame {
      */
 public void fetch(){
         try{
-            String sql="select * from vechicle";
+            String sql="select * from vehicle";
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             Vtable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -364,7 +364,7 @@ public void fetch(){
         String cell = Vtable.getModel().getValueAt(row,0).toString();
         System.out.println(cell);
         
-        String modsql = "UPDATE VECHICLE SET VNAME =?,CAPACITY =?,VTYPE=?,REGNO=? WHERE VID ="+cell;
+        String modsql = "UPDATE VEHICLE SET VNAME =?,CAPACITY =?,VTYPE=?,REGNO=? WHERE VID ="+cell;
             
         try{
             pst=conn.prepareStatement(modsql);
@@ -396,7 +396,7 @@ public void fetch(){
         String cell = Vtable.getModel().getValueAt(row,0).toString();
         System.out.println(cell);
 
-        String delsql = "DELETE FROM VECHICLE WHERE VID = "+ cell;
+        String delsql = "DELETE FROM VEHICLE WHERE VID = "+ cell;
         
         try{
             pst=conn.prepareStatement(delsql);
@@ -424,7 +424,7 @@ public void fetch(){
 //      String query = "insert into vehicle (vid, vname, capacity, type, regno)"
 //        + " values (?, ?, ?, ?, ?)";
 
-        String query = "insert into vechicle ( vname, capacity, vtype, regno)"
+        String query = "insert into vehicle ( vname, capacity, type, regno)"
         + " values ( ?, ?, ?, ?)";
       
       try{
@@ -445,7 +445,7 @@ public void fetch(){
             JOptionPane.showMessageDialog(null,"vechicle added");
             
              try{
-                    String sql="select * from vechicle";
+                    String sql="select * from vehicle";
                     pst=conn.prepareStatement(sql);
                     rs=pst.executeQuery();
                     Vtable.setModel(DbUtils.resultSetToTableModel(rs));

@@ -78,7 +78,7 @@ public class Employee extends javax.swing.JFrame {
         Clrbtn = new javax.swing.JButton();
         Espane = new javax.swing.JScrollPane();
         Etable = new javax.swing.JTable();
-        Ejdate = new com.toedter.calendar.JDateChooser();
+        Ejdate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,11 +223,11 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(73, 73, 73)
                 .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Ephone)
+                    .addComponent(Ephone, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                     .addComponent(Ename)
                     .addComponent(Eaddress)
                     .addComponent(Eid)
-                    .addComponent(Ejdate, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                    .addComponent(Ejdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(87, 87, 87)
                 .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Clrbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,9 +270,9 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(Eaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(40, 40, 40)
-                        .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Ejdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(Ejdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(EpaneLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -494,7 +494,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton Delbtn;
     private javax.swing.JTextField Eaddress;
     private javax.swing.JTextField Eid;
-    private com.toedter.calendar.JDateChooser Ejdate;
+    private org.jdesktop.swingx.JXDatePicker Ejdate;
     private javax.swing.JTextField Ename;
     private javax.swing.JPanel Epane;
     private javax.swing.JTextField Ephone;
