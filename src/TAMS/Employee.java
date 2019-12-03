@@ -17,12 +17,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-
+  
 /**
  *
  * @author HP
  */
 public class Employee extends javax.swing.JFrame {
+    
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
@@ -31,6 +32,7 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Creates new form Employee
      */
+    
     public Employee() {
         initComponents();
         conn = Mysqlconnect.ConnectDB();
@@ -270,9 +272,9 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(Eaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(40, 40, 40)
-                        .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(Ejdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(EpaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Ejdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(EpaneLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -323,8 +325,8 @@ public class Employee extends javax.swing.JFrame {
         String query = "INSERT INTO EMPLOYEE (ENAME,EPHONE,EADDRESS,EJDATE)VALUES(?,?,?,?)";
         
         try{
-            pst =conn.prepareStatement(query);
             
+            pst =conn.prepareStatement(query);
             //pst.setString(1,Eid.getText());
             pst.setString(1,Ename.getText());
             pst.setString(2,Ephone.getText());
@@ -342,12 +344,7 @@ public class Employee extends javax.swing.JFrame {
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(null,e);  
-            }
-
-
-
-            
-            
+            }  
         }
          catch(Exception e){
             JOptionPane.showMessageDialog(null,e);  
@@ -361,11 +358,12 @@ public class Employee extends javax.swing.JFrame {
         
         int row = Etable.getSelectedRow();
         //System.out.println(row);
+        
         String cell = Etable.getModel().getValueAt(row,0).toString();
         
         System.out.println(cell);
         
-        String modsql = "UPDATE EMPLOYEE SET ENAME =?,EPHONE =?,EADDRESS=? WHERE EID ="+cell;
+        String modsql = "UPDATE EMPLOYEE SET ENAME =?,EPHONE =?,EADDRESS=?,EJDATE=? WHERE EID ="+cell;
         
         try{
             pst=conn.prepareStatement(modsql);
@@ -373,7 +371,7 @@ public class Employee extends javax.swing.JFrame {
             pst.setString(1,Ename.getText());
             pst.setString(2,Ephone.getText());
             pst.setString(3,Eaddress.getText());
-           // pst.setDate(4, new java.sql.Date(Ejdate.getDate().getTime()));
+            pst.setDate(4, new java.sql.Date(Ejdate.getDate().getTime()));
             
             pst.execute();
             
@@ -381,10 +379,10 @@ public class Employee extends javax.swing.JFrame {
             
             fetch();
         }
-        catch(Exception e){
-            
+        
+        catch(Exception e){  
            JOptionPane.showMessageDialog(null,e);  
-        }  
+        }    
     }//GEN-LAST:event_ModbtnActionPerformed
 
     private void DelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelbtnActionPerformed
@@ -439,7 +437,16 @@ public class Employee extends javax.swing.JFrame {
        Ename.setText(model.getValueAt(selectedRowIndex, 1).toString());
        Ephone.setText(model.getValueAt(selectedRowIndex, 2).toString());
        Eaddress.setText(model.getValueAt(selectedRowIndex, 3).toString());
+       java.util.Date date1;
+
        
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(selectedRowIndex,4).toString());
+            Ejdate.setDate(date1);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(Book_Trip.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
 //        try {
 //            Date date = (Date) new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedRowIndex, 4));
