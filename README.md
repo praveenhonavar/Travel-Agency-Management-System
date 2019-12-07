@@ -5,7 +5,7 @@
 
 ### ***Necessity of the project***
 
-- Nearly everyone goes on a vacation, for this ***Travel agency management system*** would play a vital role in planning a perfect trip.
+- Nearly everyone goes on a vacation :airplane:, for this ***Travel agency management system*** would play a vital role in planning a perfect trip.
 - The main purpose is to ***help tourism companies to manage its customers and trips***.
 
 
