@@ -12,7 +12,7 @@
 
  ## **Applications & Advantages**
 
- - Provides an ***user interface for the administrator**** for managing the data present in the  travel agency.
+ - Provides an ***user interface for the administrator*** for managing the data present in the  travel agency.
 
  - ***Reduces the time***:clock3: of recording the data.
  
