@@ -22,11 +22,40 @@
 - MySQL
 - Java
 
-## ** Screenshots **
+## **Screenshots**
 
 Admin Login page :point_down:
 
 ![admin login](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(21).png)
+
+Vehicle Dashboard Page :point_down:
+
+![vehicle dashboard](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(22).png)
+
+Employee Dashboard Page :point_down:
+
+![employee dashboard](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(23).png)
+
+
+Booking Dashboard Page :point_down:
+
+![booking dashboard](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(24).png)
+
+
+Confirm Booking Page :point_down:
+
+![confirm book dashboard](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(25).png)
+
+
+
+
+
+
+
+
+
+
+
 ## **Contributors**
 
  <a href="https://github.com/Mspai2406">       ***Kavya*** 
