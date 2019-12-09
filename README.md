@@ -21,7 +21,13 @@
 - MySQL
 - Java
 
+### ***Contributors:***
+
+** Mspai2406 ** &lt;https://github.com/praveenhonavar&gt; 
 
 
+
+## License
+BSD-3-Clause
 
 
