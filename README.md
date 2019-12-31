@@ -58,7 +58,7 @@ Confirm Booking Page :point_down:
 
 ## **Contributors**
 
- <a href="https://github.com/Mspai2406">       ***Kavya*** 
+ <a href="https://github.com/Mspai2406">       ***Kavya Pai*** 
 
 
 
