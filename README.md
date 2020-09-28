@@ -32,6 +32,12 @@ Click here to watch:point_down:
 
 Admin Login page :point_down:
 
+
+
+![ER-Diagram](https://github.com/praveenhonavar/Travel-Agency-Management-System/blob/master/TAMS-images/Screenshot%20(131).png)
+
+![Schema_diagram](https://github.com/praveenhonavar/Travel-Agency-Management-System/blob/master/TAMS-images/Screenshot%20(132).png)
+
 ![admin login](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(21).png)
 
 Vehicle Dashboard Page :point_down:
