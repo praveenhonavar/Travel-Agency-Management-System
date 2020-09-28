@@ -28,15 +28,18 @@ Click here to watch:point_down:
 
 <a href='https://youtu.be/iddlBRLe06A'>Travel Agency Management System </a>
 
-## **Screenshots**
-
-Admin Login page :point_down:
-
-
+## **ER-Diagram**
 
 ![ER-Diagram](https://github.com/praveenhonavar/Travel-Agency-Management-System/blob/master/TAMS-images/Screenshot%20(131).png)
 
+## **Schema Diagram**
+
 ![Schema_diagram](https://github.com/praveenhonavar/Travel-Agency-Management-System/blob/master/TAMS-images/Screenshot%20(132).png)
+
+
+## **Screenshots**
+
+Admin Login page :point_down:
 
 ![admin login](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(21).png)
 
@@ -57,15 +60,6 @@ Booking Dashboard Page :point_down:
 Confirm Booking Page :point_down:
 
 ![confirm book dashboard](https://github.com/praveenhonavar/Travel_Agency_Management_System/blob/master/TAMS-images/Screenshot%20(25).png)
-
-
-
-
-
-
-
-
-
 
 
 ## **Contributors**
