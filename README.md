@@ -37,6 +37,10 @@ Click here to watch:point_down:
 ![Schema_diagram](https://github.com/praveenhonavar/Travel-Agency-Management-System/blob/master/TAMS-images/Screenshot%20(132).png)
 
 
+## **Report**
+
+[Travel Agency Management System Report](https://drive.google.com/file/d/1mtmDH7QAuskuzH7aIIcGP5pBsvSzA8Nu/view?usp=sharing)
+
 ## **Screenshots**
 
 Admin Login page :point_down:
